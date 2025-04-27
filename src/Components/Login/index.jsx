@@ -27,7 +27,7 @@ const Login = () => {
       return;
     }
 
-    if (password === "kubanych" && username === "Admin") {
+    if (password === "0909" && username === "Admin") {
       login();
       toast.success(t("loginSuccess") || "Успешный вход!", {
         position: "top-right",

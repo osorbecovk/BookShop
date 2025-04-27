@@ -23,7 +23,7 @@
     "epicFantasy": "Эпикалык фантазия",
     "children": "Балдар адабияты"
   },
-  "price": "Баа",
+  "price": "Баасы",
   "description": "Китептин сүрөттөлүшү",
   "saveInfo": "Маалыматты сактоо",
   "input": "Китеп издөө...",
@@ -68,5 +68,6 @@
   "password": "Сырсөз",
   "selectGenre": "Жанрды тандаңыз",
   "alreadyInBasket": "Себетте бар!",
-  "addToBasket": "Себетке кошулду"
+  "addToBasket": "Себетке кошулду",
+  "genree": "Жанр"
 }

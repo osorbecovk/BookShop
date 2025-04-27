@@ -16,7 +16,7 @@ const Details = () => {
     setSlice(slice === 161 ? selectedCard.description.length : 161);
   };
 
-  if (!selectedCard) return nunll;
+  if (!selectedCard) return null;
 
   return (
     <section id="details" className="py-10 px-4">
@@ -34,14 +34,10 @@ const Details = () => {
             {selectedCard.title}
           </h2>
           <p className="text-xl md:text-2xl font-semibold mb-2">
-            {selectedCard.price} $
+            {selectedCard.price} com
           </p>
           <p className="text-sm md:text-[20px] font-medium text-gray-300 mb-4">
-            {t("Genre")}:{" "}
-            {selectedCard.genre
-              ? selectedCard.genre.charAt(0).toUpperCase() +
-                selectedCard.genre.slice(1)
-              : "Неизвестно"}
+            {t("genree")}: {selectedCard.genre}
           </p>
           <h1 className="text-2xl font-semibold mb-2">{t("description")}</h1>
           <p className="text-base md:text-lg text-gray-200 leading-relaxed mb-6">

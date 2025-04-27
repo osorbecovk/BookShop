@@ -43,7 +43,7 @@ const Create = () => {
       title,
       price,
       description,
-      genre,
+      genre: genre,
       image,
     };
 
@@ -70,6 +70,7 @@ const Create = () => {
         position: "top-right",
         autoClose: 3000,
         theme: "dark",
+        closeOnClick: true,
       });
     }
   };
@@ -134,64 +135,64 @@ const Create = () => {
                 <option value="" className="text-black" disabled>
                   {t("selectGenre") || "Выберите жанр"}
                 </option>
-                <option value="fantasy" className="text-black">
+                <option value={t("genre.fantasy")} className="text-black">
                   {t("genre.fantasy")}
                 </option>
-                <option value="sciFi" className="text-black">
+                <option value={t("genre.sciFi")} className="text-black">
                   {t("genre.sciFi")}
                 </option>
-                <option value="detective" className="text-black">
+                <option value={t("genre.detective")} className="text-black">
                   {t("genre.detective")}
                 </option>
-                <option value="thriller" className="text-black">
+                <option value={t("genre.thriller")} className="text-black">
                   {t("genre.thriller")}
                 </option>
-                <option value="romance" className="text-black">
+                <option value={t("genre.romance")} className="text-black">
                   {t("genre.romance")}
                 </option>
-                <option value="historical" className="text-black">
+                <option value={t("genre.historical")} className="text-black">
                   {t("genre.historical")}
                 </option>
-                <option value="horror" className="text-black">
+                <option value={t("genre.horror")} className="text-black">
                   {t("genre.horror")}
                 </option>
-                <option value="youngAdult" className="text-black">
+                <option value={t("genre.youngAdult")} className="text-black">
                   {t("genre.youngAdult")}
                 </option>
-                <option value="adventure" className="text-black">
+                <option value={t("genre.adventure")} className="text-black">
                   {t("genre.adventure")}
                 </option>
-                <option value="crime" className="text-black">
+                <option value={t("genre.crime")} className="text-black">
                   {t("genre.crime")}
                 </option>
-                <option value="dystopian" className="text-black">
+                <option value={t("genre.dystopian")} className="text-black">
                   {t("genre.dystopian")}
                 </option>
-                <option value="biography" className="text-black">
+                <option value={t("genre.biography")} className="text-black">
                   {t("genre.biography")}
                 </option>
-                <option value="sciFiThriller" className="text-black">
+                <option value= {t("genre.sciFiThriller")} className="text-black">
                   {t("genre.sciFiThriller")}
                 </option>
-                <option value="classic" className="text-black">
+                <option value={t("genre.classic")} className="text-black">
                   {t("genre.classic")}
                 </option>
-                <option value="psychological" className="text-black">
+                <option value={t("genre.psychological")} className="text-black">
                   {t("genre.psychological")}
                 </option>
-                <option value="supernatural" className="text-black">
+                <option value={t("genre.supernatural")} className="text-black">
                   {t("genre.supernatural")}
                 </option>
-                <option value="selfHelp" className="text-black">
+                <option value={t("genre.selfHelp")} className="text-black">
                   {t("genre.selfHelp")}
                 </option>
-                <option value="comedy" className="text-black">
+                <option value={t("genre.comedy")} className="text-black">
                   {t("genre.comedy")}
                 </option>
-                <option value="epicFantasy" className="text-black">
+                <option value={t("genre.epicFantasy")} className="text-black">
                   {t("genre.epicFantasy")}
                 </option>
-                <option value="children" className="text-black">
+                <option value={t("genre.children")} className="text-black">
                   {t("genre.children")}
                 </option>
               </select>

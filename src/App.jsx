@@ -5,7 +5,6 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Create from "./Components/Create";
 import Home from "./Components/Home";
-import Category from "./Components/Category";
 import Card from "./Components/Card";
 import Details from "./Components/Details";
 import Basket from "./Components/Basket";
@@ -25,7 +24,6 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   const routes = [
     { id: 1, path: "/", element: <Home /> },
-    { id: 2, path: "/category", element: <Category /> },
     { id: 3, path: "/create", element: <ProtectedRoute><Create /></ProtectedRoute> },
     { id: 4, path: "/books", element: <Card /> },
     { id: 5, path: "/details/:id", element: <Details /> },

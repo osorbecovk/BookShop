@@ -4,6 +4,8 @@ import { BodyLanguage } from "../../Context/RootContext";
 import { FaTrashAlt } from "react-icons/fa";
 import Empty from "../../assets/Images/1.png";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Basket = () => {
   const { basket, setBasket } = useContext(BodyLanguage);
@@ -54,8 +56,9 @@ const Basket = () => {
 
   const handleCheckout = async () => {
     const phoneRegex = /^\+996\d{9}$/;
+
     if (!name || !phone) {
-      toast.error('Аты-жөнүңүздү жана телефон номериңизди толтуруңуз!', {
+      toast.error("Аты-жөнүңүздү жана телефон номериңизди толтуруңуз!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -64,11 +67,12 @@ const Basket = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
       return;
     }
+
     if (!phoneRegex.test(phone)) {
-      toast.error('Телефон номери +996 менен башталып, 9 орундуу болушу керек!', {
+      toast.error("Телефон номери +996 менен башталып, 9 орундуу болушу керек!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -77,41 +81,82 @@ const Basket = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
+      return;
+    }
+
+    if (basket.length > 10) {
+      toast.error("Слишком много товаров в корзине. Максимум 10.", {
+        position: "top-right",
+        closeOnClick: true,
+        theme: "dark",
+      });
       return;
     }
 
     const orderData = {
       name,
       phone,
-      delivery:
-        deliveryMethod === "pickup" ? "Алып кетүү" : `Курьер (${address})`,
+      delivery: deliveryMethod === "pickup" ? "Алып кетүү" : `Курьер (${address})`,
       payment: paymentMethod === "online" ? "Онлайн төлөм" : "Накталай",
       items: basket.map((item) => ({
         title: item.title,
         price: item.price,
         quantity: quantities[item.id] || 1,
-        description: item.description || "",
+        description: item.description ? item.description.slice(0, 100) : "", // Ограничение описания
         genre: item.genre || "",
-        image: item.image || "",
+        image: item.image && !item.image.startsWith("data:") ? item.image.slice(0, 100) : "", // Исключение Base64
       })),
       total: calculateTotal(),
     };
 
     try {
+      // Логирование для диагностики
+      const orderDataSize = JSON.stringify(orderData).length / 1024; // Размер в КБ
+      console.log("orderData:", orderData);
+      console.log("Количество товаров:", basket.length);
+      console.log(`Размер orderData: ${orderDataSize} КБ`);
+
+      // Проверка размера данных
+      if (orderDataSize > 100) {
+        toast.error("Заказ слишком большой. Уменьшите количество товаров.", {
+          position: "top-right",
+          autoClose: 5000,
+          theme: "dark",
+        });
+        return;
+      }
+
+      // Отправка запроса
       const response = await axios.post(
-        "http://localhost:3001/send-order",
+        "https://67ffe142b72e9cfaf7262fd6.mockapi.io/api/v1/books",
         orderData
       );
-      alert(response.data.message);
+      toast.success("Заказ успешно отправлен!", {
+        position: "top-right",
+        autoClose: 5000,
+        theme: "dark",
+      });
       setBasket([]);
       localStorage.setItem("basket", JSON.stringify([]));
       setName("");
       setPhone("");
       setAddress("");
     } catch (error) {
-      console.error(error);
-      alert("Ката кетти, кайра аракет кылыңыз.");
+      console.error("Ошибка при отправке заказа:", error);
+      if (error.response && error.response.status === 413) {
+        toast.error("Заказ слишком большой. Уменьшите количество товаров или упростите описания.", {
+          position: "top-right",
+          autoClose: 5000,
+          theme: "dark",
+        });
+      } else {
+        toast.error("Произошла ошибка при отправке заказа. Попробуйте снова.", {
+          position: "top-right",
+          autoClose: 5000,
+          theme: "dark",
+        });
+      }
     }
   };
 
@@ -239,7 +284,7 @@ const Basket = () => {
                 </p>
               </div>
               <p className="text-lg font-bold text-white font-montserrat">
-                {calculateTotal()}$
+                {calculateTotal()}с
               </p>
             </div>
           </div>
@@ -264,7 +309,7 @@ const Basket = () => {
                       {el.genre || "New York Times Bestseller"}
                     </p>
                     <p className="text-base font-bold text-white font-montserrat">
-                      {el.price}$
+                      {el.price}c
                     </p>
                     <div className="flex items-center gap-2">
                       <button
