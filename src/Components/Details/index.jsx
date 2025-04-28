@@ -63,6 +63,7 @@ const Details = () => {
           >
             Купить сейчас
           </button>
+          
         </div>
       </div>
     </section>
