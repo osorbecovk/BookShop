@@ -438,7 +438,7 @@ const Basket = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50">
-          <div className="relative bg-gradient-to-br from-white/90 to-gray-100 p-10 rounded-3xl shadow-2xl w-full max-w-md animate-scale-fade">
+          <div className="relative bg-gradient-to-br from-white/90 to-gray-100 p-10 rounded-3xl shadow-2xl w-[350px] max-w-md animate-scale-fade">
             <div className="absolute top-3 right-3">
               <button
                 onClick={handleCloseModal}
@@ -484,7 +484,7 @@ const Basket = () => {
       )}
 
       {dataVerification && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
+        <div className="fixed min-h-screen inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
           <div className="relative bg-gradient-to-br from-white to-gray-100 p-6 sm:p-8 rounded-2xl shadow-2xl w-full max-w-md mx-4 transform transition-all duration-300 scale-100 animate-scale-fade">
             <button
               onClick={() => setDataVerification(false)}

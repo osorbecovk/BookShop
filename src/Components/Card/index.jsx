@@ -21,12 +21,14 @@ const Card = () => {
         position: "top-right",
         autoClose: 3000,
         theme: "dark",
+        closeOnClick: true
       });
     } else {
       toast.error(t("alreadyInBasket") || "Товар уже в корзине", {
         position: "top-right",
         autoClose: 3000,
         theme: "dark",
+        closeOnClick: true
       });
     }
   }
